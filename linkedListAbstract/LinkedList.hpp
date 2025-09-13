@@ -63,35 +63,37 @@ class Linkedlist : public List{
         return -1;
     }
 
-    void remove(int n){
+    int remove(int n){
 
-        
+        if(!head) return 0;
+
         if(head->val == n && head){
             Node* temp = head;
             head = head->next;
             if(!head) tail = nullptr;
             delete temp;
             size--;
-            return;
+            return 1;
         }
         
-        Node* prev = head;
-        Node* curr = head->next;
-        while(curr){
-            if(curr->val == n){
-                prev->next = curr->next;
-                if(curr == tail) tail = prev;
-                delete curr;
+        Node* curr = head;
+        while(curr && curr->next){
+            if(curr->next->val == n){
+                Node *toDelete = curr->next;
+                curr->next = toDelete->next;
+                if(curr->next == tail) tail = curr;
+                delete toDelete;
                 size--;
-                return;
+                return 1;
             }
-            prev = curr;
             curr = curr->next;
         }
+
+        return 0;
         
     }
 
-    void addAt(int n, int pos){
+    int addAt(int n, int pos){
 
         Node* newNode = new Node{n, nullptr};
 
@@ -114,8 +116,10 @@ class Linkedlist : public List{
             }
         }else{
             cout << "Invalid Position" << endl;
-            return;
+            return 0;
         }
+
+        return 1;
     }
 
 

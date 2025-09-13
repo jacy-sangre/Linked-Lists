@@ -5,6 +5,6 @@ class List{
     virtual void addHead(int) = 0;
     virtual void addTail(int) = 0;
     virtual int getPosition(int) = 0;
-    virtual void remove(int) = 0;
-    virtual void addAt(int, int) = 0;
+    virtual int remove(int) = 0;
+    virtual int addAt(int, int) = 0;
 };

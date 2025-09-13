@@ -39,12 +39,18 @@ int main(){
                 break;
             case 'r':
                 cin >> n;
-                list->remove(n);
+                if(list->remove(n)){
+                    cout << "Succesfully removed!" << endl;
+                }else{
+                    cout << "Element not found in list" << endl;
+                }
                 break;
             case 'A':
                 cin >> n;
                 cin >> pos;
-                list->addAt(n, pos);
+                if(list->addAt(n, pos)){
+                    cout << "Succesfully added!" << endl;
+                }
                 break;
             case 'x':
                 cout << "Exiting..." << endl;

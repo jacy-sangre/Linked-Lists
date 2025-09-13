@@ -42,6 +42,7 @@ int main(){
         if(temp){
             Node *nodeToDelete = temp->next; // take note of the nodeToDelete
             temp->next = temp->next->next; // connect the node before the nodeToDelete to the next node of nodeToDelete
+            if(temp->next == tail) tail = temp;
             delete nodeToDelete; 
         }
     }
