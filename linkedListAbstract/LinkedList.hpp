@@ -39,15 +39,28 @@ class Linkedlist : public List{
 
     void addHead(int n){
          
+        Node* prev = nullptr;
         Node *newNode = new Node{n, nullptr};
         newNode->next = head;
+        if(!head){
+            head = tail = newNode;
+        }else{
+            tail = head;
+        }
         head = newNode;
+
         size++;
     }
 
     void addTail(int n){
+        
+        
         Node *newNode = new Node{n, nullptr};
-        tail = tail->next = newNode;
+        if(!head){
+            head = tail = newNode;
+        }else{
+            tail = tail->next = newNode;
+        }
         size++;
     }
 
@@ -75,9 +88,18 @@ class Linkedlist : public List{
                 Node *toDelete = curr;
                 if(head == curr){
                     head = head->next;
+                }else{
+                    prev->next = curr->next;
+                    if(tail == curr) tail = prev;
                 }
+                delete toDelete;
+                return 1;
             }
+            prev = curr;
+            curr = curr->next;
         }
+
+        return 0;
         
     }
 
