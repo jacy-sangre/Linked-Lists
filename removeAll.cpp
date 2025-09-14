@@ -35,21 +35,18 @@ int main(){
         if(curr->val == n){
             Node* toDelete = curr;
             if(head == curr){
-                head = head->next; 
-                if(head == nullptr) tail = nullptr;        
+                head = head->next;
             }else{
                 prev->next = curr->next;
-                if(tail == curr) tail = prev;       
+                if(tail == curr) tail = prev;
             }
             curr = curr->next;
             delete toDelete;
         }else{
             prev = curr;
             curr = curr->next;
-        }
-    }  
-    
-    
+        }  
+    }
 
     cout << "Linked list: ";
     Node* temp = head;

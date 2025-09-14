@@ -29,33 +29,23 @@ int main(){
     cin >> n;
     int flag = 0;
 
-    if(head && head->val == n){
-        Node* temp = head;
-        head = head->next;
-        delete temp;
-        flag = 1;
-    }else{
-        Node* prev = head;
-        Node* temp = head->next;
-        while(temp){
-            if(temp->val == n){
-                prev->next = temp->next;
-                if(temp == tail) tail = prev;
-                delete temp;
-                flag = 1;
+    Node* curr = head;
+    Node* prev = nullptr;
+    while(curr){
+        if(curr->val == n){
+            Node* toDelete = curr;
+            if(head == curr){
+                head = head->next;
+            }else{
+                prev->next = curr->next;
+                if(tail == curr) tail = prev;
             }
-            prev = temp;
-            temp = temp->next;
-        }
-    }
-   
+            delete toDelete;
 
-    if(flag){
-        cout << "Number deleted!" << endl;
-    }else{
-        cout << "Number not in the list" << endl;
+        }
+        prev = curr;
+        curr = curr->next;
     }
-        
 
     cout << "Linked list: ";
     Node* temp = head;

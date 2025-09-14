@@ -67,29 +67,17 @@ class Linkedlist : public List{
 
         if(!head) return 0;
 
-        if(head->val == n && head){
-            Node* temp = head;
-            head = head->next;
-            if(!head) tail = nullptr;
-            delete temp;
-            size--;
-            return 1;
-        }
-        
+        Node* prev = nullptr;
         Node* curr = head;
-        while(curr && curr->next){
-            if(curr->next->val == n){
-                Node *toDelete = curr->next;
-                curr->next = toDelete->next;
-                if(curr->next == tail) tail = curr;
-                delete toDelete;
-                size--;
-                return 1;
-            }
-            curr = curr->next;
-        }
 
-        return 0;
+        while(curr){
+            if(curr->val == n){
+                Node *toDelete = curr;
+                if(head == curr){
+                    head = head->next;
+                }
+            }
+        }
         
     }
 
