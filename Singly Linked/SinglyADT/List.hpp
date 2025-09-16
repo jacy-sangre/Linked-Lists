@@ -7,4 +7,6 @@ class List{
     virtual int getPosition(int) = 0;
     virtual int remove(int) = 0;
     virtual int addAt(int, int) = 0;
+    virtual int removeAt(int) = 0;
+    virtual int removeAll(int) = 0;
 };

@@ -52,6 +52,14 @@ int main(){
                     cout << "Succesfully added!" << endl;
                 }
                 break;
+            case 'P':
+                cin >> pos;
+                cout << "Removed " << list->removeAt(pos) << endl;
+                break;
+            case 'R':
+                cin >> n;
+                cout << "Elements removed: " << list->removeAll(n) <<  endl;
+                break;
             case 'x':
                 cout << "Exiting..." << endl;
                 break;

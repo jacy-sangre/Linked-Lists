@@ -7,8 +7,6 @@ using namespace std;
 
 class Linkedlist : public List{
 
-    
-
     int size = 0;
     Node* head;
     Node* tail;
@@ -41,14 +39,12 @@ class Linkedlist : public List{
          
         Node* prev = nullptr;
         Node *newNode = new Node{n, nullptr};
-        newNode->next = head;
         if(!head){
             head = tail = newNode;
         }else{
-            tail = head;
+            newNode->next = head;
+            head = newNode;
         }
-        head = newNode;
-
         size++;
     }
 
@@ -57,12 +53,15 @@ class Linkedlist : public List{
         
         Node *newNode = new Node{n, nullptr};
         if(!head){
-            head = tail = newNode;
+            head = newNode;
+            tail = newNode;
         }else{
-            tail = tail->next = newNode;
+            tail->next = newNode;
+            tail = newNode;
         }
         size++;
     }
+    
 
     int getPosition(int n){
         Node *temp = head;
@@ -99,8 +98,64 @@ class Linkedlist : public List{
             curr = curr->next;
         }
 
+        size--;
         return 0;
         
+    }
+
+    int removeAt(int pos){
+
+        int res;
+        if(pos == 1){
+            res = head->val;
+            Node* toDelete = head;
+            head = head->next;
+            if(!head) tail = nullptr;
+            delete toDelete;
+        }else{
+            Node* temp = head;
+            for(int i = 1; i < pos-1 && temp; i++){
+                temp = temp->next;
+            }
+
+            if(temp){
+                Node* toDelete = temp->next;
+                res = toDelete->val;
+                temp->next = toDelete->next;
+                if(!toDelete->next) tail = temp;
+                delete toDelete;
+            }
+        }
+        size--;
+        return res;
+    }
+
+    int removeAll(int n){
+        
+        int count = 0;
+        Node* prev = nullptr;
+        Node* curr = head;
+        while(curr){
+            if(curr->val == n){
+                Node* toDelete = curr;
+                if(head == curr){
+                    head = head->next;
+                    if(!head) tail = nullptr;
+                }else{
+                    prev->next = curr->next;
+                    if(curr == tail) tail = prev;
+                }
+                curr = curr->next;
+                delete toDelete;
+                count++;
+            }else{
+                prev = curr;
+                curr = curr->next;
+            }
+        }
+
+        size -= count;
+        return count;
     }
 
     int addAt(int n, int pos){
@@ -131,6 +186,5 @@ class Linkedlist : public List{
 
         return 1;
     }
-
-
 };
+
