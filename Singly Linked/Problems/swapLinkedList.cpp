@@ -31,28 +31,24 @@ int main(){
         temp = temp->next;
     }
     cout << endl;
+    
+    Node* curr = head;
+    Node* prev = nullptr;
 
     //Swap
-    Node* prev = nullptr;
-    Node* curr = head;
-
     while(curr && curr->next){
+        Node* firstNextPair = curr->next->next;
+        Node* second = curr->next;
 
-        Node* nextPair = curr->next->next; // take not of the element next to the pair
-        Node* second = curr->next; // take note of the element next to the current
+        curr->next = firstNextPair;
+        second->next = curr;
 
-        // swap
-        curr->next = nextPair; // link curr to the element next to the pair
-        second->next = curr; // link the element next to curr to the curr so they swap
+        if(!prev) head = second;
+        else prev->next = second;
 
-        if(prev){
-            prev->next = second; // take note of the previous after iteration 1
-        }else{
-            head = second; // make the second the head since they have been swapped
-        }
+        prev = curr;
+        curr = curr->next;
 
-        prev = curr; // take not of teh previous curr to link the list properly
-        curr = curr->next; //traverse
     }
 
     cout << "Updated Linked list: ";

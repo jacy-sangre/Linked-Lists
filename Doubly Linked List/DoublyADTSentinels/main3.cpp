@@ -44,7 +44,16 @@ int main(){
                 cin >> n;
                 res = list->remove(n);
                 if(res != -1){
-                    cout << "Removed at pos: " << res << endl;
+                    cout << "Removed at position " << res << endl;
+                }else{
+                    cout << "Nothing is removed" << endl;
+                }
+                break;
+            case 'R':
+                cin >> n;
+                res = list->removeAll(n);
+                if(res != -1){
+                    cout << "Removed elements: " << res << endl;
                 }else{
                     cout << "Nothing is removed" << endl;
                 }
@@ -61,20 +70,10 @@ int main(){
             case 'I':
                 cin >> n;
                 cin >> pos;
-                list->addAt(n, pos);
-                break;
-            case 'R':
-                cin >> n;
-                res = list->removeAll(n);
-                if(res != -1){
-                    cout << "Removed: " << res << endl;
-                }else{
-                    cout << "Nothing is removed" << endl;
-                }
+                list->addAt(n , pos);
                 break;
             case 'z':
                 list->reverse();
-                cout << "List Reversed" << endl;;
                 break;
             case 'x':
                 cout << "Exiting..." << endl;
@@ -85,4 +84,5 @@ int main(){
             }
 
     }while(op != 'x');
+
 }
