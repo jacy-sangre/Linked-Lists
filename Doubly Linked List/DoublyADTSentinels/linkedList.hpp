@@ -161,6 +161,27 @@ class Linkedlist : public Lists{
         return val;
     }
 
+    int get(int pos){
+        if(pos < 1 || pos > size) return -1;
+        
+        Node* curr;
+        if(pos <= (size+1)/2){
+            curr = head.next;
+            cout << "From the head" << endl;
+            for(int i = 1; i < pos; i++){
+                curr = curr->next;
+            }
+            return curr->val;
+        }else{
+            curr = tail.prev;
+            cout << "From the tail" << endl;
+            for(int i = size; i > pos; i--){
+                curr = curr->prev;
+            }
+            return curr->val;
+        }
+    }
+
 };
 
 

@@ -231,4 +231,28 @@ class Linkedlist : public Lists{
         head = prev;
     }
 
+    int get(int pos){
+        if(size == 0 || pos < 1 || pos > size) return -1;
+
+        Node* temp = head;
+        if(pos <= (size+1)/2){
+            cout << "From the head" << endl;
+            for(int i = 1; i < pos; i++){
+                temp = temp->next;
+            }
+            return temp->val;
+        }else{
+            temp = tail;
+            cout << "From the tail" << endl;
+            for(int i = size; i > pos; i--){
+                temp = temp->prev;
+            }
+            return temp->val;
+        }
+
+        return -1;
+            
+
+    }
+
 };

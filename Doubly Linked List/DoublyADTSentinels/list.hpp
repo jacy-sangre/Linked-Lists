@@ -10,4 +10,5 @@ class Lists{
     virtual void addAt(int n, int pos) = 0;
     virtual int removeAt(int pos) = 0;
     virtual void reverse() = 0;
+    virtual int get(int pos) = 0;
 };
